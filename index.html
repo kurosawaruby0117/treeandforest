@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <title>9주차 자료구조 활동 보고서 -20181031</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="myInfo">
+      <h1>9주차: 이진트리의 연산</h1>
+      <h2>20181031 영어영문학과 이창진</h2>
+      <h5>
+        <a href="https://kurosawaruby0117.github.io/whatislist/">온라인으로 보기</a>
+      </h5>
+    </header>
+    <main>
+      <header>
+        <ul class="index__list" id="top">
+          <li class="index">
+            <span class="index_big" id="first"
+              ><a href="#main_first">1.이진탐색트리의 탐색과 삽입</a></span>
+            <ul class="index_small">
+              <li>
+                <span id="first_first"><a href="#main_first_first">1-1. 탐색</a></span>
+              </li>
+              <li>
+                <span id="first_first"><a href="#main_first_second">1-2. 삽입</a></span>
+              </li>
+            </ul>
+          </li>
+          <li class="index_big">
+            <span class="index_big" id="second"
+              ><a href="#main_second">2.이진 트리의 삭제</a></span
+            >
+            <ul class="index_small">
+              <li>
+                <span id="second_one"
+                  ><a href="#main_second_first"
+                    >2-1. 첫 번째 경우 </a
+                  ></span
+                >
+              </li>
+              <li>
+                <span id="second_second"
+                  ><a href="#main_second_second"
+                    >2-2. 두 번째 경우</a
+                  ></span
+                >
+              </li>
+              <li>
+                <span id="second_second"
+                  ><a href="#main_second_third"
+                    >2-3.  세 번째 경우</a
+                  ></span
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="index_big">
+            <span class="index_big" id="third"
+              ><a href="#main_third">3. 느낀 점</a></span
+            >
+          </li>
+        </ul>
+      </header>
+      <div class="p_index">
+        <h2 class="p_index_title" id="main_first"><a href="#top">1. 이진탐색트리의 탐색과 삽입</h2>
+        <h3 class="p_index_title_sub" id="main_first_first">
+          <a href="#top">1-1. 탐색</a>
+        </h3>
+        <p>
+          이진탐색트리란 무엇일까요?<br>
+          이진트리 중, 탐색 즉 자신이 원하는 값을 찾기 위해 효율적으로 배치된 자료구조입니다.<br>
+          왼쪽 서브 트리는 자신의 값보다 작은 값을 넣고, 오른쪽 서브 트리는 자신의 값보다 큰 값을 넣습니다.<br>
+          <ul>
+            <li>
+              getLeft():왼쪽 노드로 이동
+            </li>
+            <li>
+              getRight():오른쪽 노드로 이동
+            </li>
+          </ul>
+          <div class="codeBox" style="background-color:#272822; height: 180px; width: 910px; font-size: 20px; color:white; font-family: 'Roboto Mono', monospace; position: relative;">
+            <div class="main" style="margin-top: 30px;"><span>PNODE </span><span>searchRecur ( PNODE n , int key )</span><span>{</span></div>
+              <div class="source" style="margin-left: 30px;">
+                <span>if (n == NULL) return NULL;</span>
+              </div>
+              <div class="source" style="margin-left: 30px;">
+                <span>if (key == n->getData()) return n;</span>
+              </div>
+              <div class="source" style="margin-left: 30px;">
+                <span>else if (key < n->getData()) return searchRecur(n->getLeft(),key);</span>
+              </div>
+              <div class="source" style="margin-left: 30px;">
+                <span>else  return searchRecur(n->getRight(),key);</span>
+              </div>
+        <div class="source" style="margin-top: 10px;">}</div>
+
+          </div>
+      이때도 Recursion을 사용해 자식 노드를 하나씩 방문해 값을 찾습니다.
+      <h3 class="p_index_title_sub" id="main_first_second">
+        <a href="#top">1-2. 삽입</a>
+      </h3>
+      <p>
+        이번엔 값을 넣을 땐, 어떻게 해야할까요?<br>
+        이진탐색트리의 정렬을 위해선 새로운 값을 적당한 자리에 넣는 것이 매우 중요합니다.<br>
+        <div class="codeBox" style="background-color:#272822; height: 300px; width: 910px; font-size: 20px; color:white; font-family: 'Roboto Mono', monospace; position: relative;">
+          <div class="main" style="margin-top: 30px;"><span>PNODE </span><span>searchRecur ( PNODE r , PNODE put )</span><span>{</span></div>
+            <div class="source" style="margin-left: 30px;">
+              <span>if (r->getData() == n->getData()) return;</span>
+            </div>
+            <div class="source" style="margin-left: 30px;">
+              <span>else if (n->getData() < r->getData()) {</span>
+            </div>
+            <div class="source" style="margin-left: 50px;">
+              <span>if (r->getLeft() == NULL) r->setLeft(n);</span>
+            </div>
+            <div class="source" style="margin-left: 50px;">
+              <span>else insertRecur(r->getLeft(),n);</span>
+            </div>
+            <div class="source" style="margin-left: 30px;">
+              <span>}</span>
+            </div>
+            <div class="source" style="margin-left: 30px;">
+              <span>else {</span>
+            </div>
+            <div class="source" style="margin-left: 50px;">
+              <span>if (r->getRight() == NULL) r->setRight(n);</span>
+            </div>
+            <div class="source" style="margin-left: 50px;">
+              <span>else insertRecur(r->getRight(),n);</span>
+            </div>
+            <div class="source" style="margin-left: 30px;">
+              <span>}</span>
+            </div>
+      <div class="source" style="margin-top: 10px;">}</div>
+
+        </div>
+        <ol>
+          <li>
+            값이 중복되면, 함수를 끝냅니다.
+          </li>
+          <li>
+            새로 넣는 노드의 값이 노드보다 작고 노드가 비어있다면, 왼쪽으로 노드를 보냅니다.
+          </li>
+          <li>
+            새로 넣는 노드의 값이 노드보다 작은데, 이미 노드가 있다면 다시 탐험해봅니다.
+          </li>
+          <li>
+            새로 넣는 노드의 값이 노드보다 크고 노드가 비어있다면, 오른쪽으로 노드를 보냅니다.
+          </li>
+          <li>
+            새로 넣는 노드의 값이 노드보다 큰데, 이미 노드가 있다면 다시 탐험해봅니다.
+          </li>
+        </ol>
+      <div class="p_index">
+        <h2 class="p_index_title" id="main_second">
+          <a href="#top">2. 이진 트리의 삭제</a>
+        </h2>
+        <h3 class="p_index_title_sub" id="main_second_first">
+          <a href="#top">2-1. 첫번째 경우</a>
+        </h3>
+        <img src="first_case.png" style="width: 500px;"/>
+        <p>
+          첫번째 경우는 삭제하려는 노드가 단말 노드, 즉 자식이 없는 경우입니다.
+          이 경우는 제일 쉽습니다. 그냥 그 노드를 부모노드로부터 해방시키면 모든 게 해결됩니다.
+        </p>
+       
+        </div> 
+       
+        <h3 class="p_index_title_sub" id="main_second_second">
+          <a href="#top">2-2. 두번째 경우</a>
+        </h3>
+        <img src="second_case.jpg" style="width: 500px;">
+        <p>
+          여기서 12를 삭제한다고 가정해봅시다. 그럼 그 자리에는 누가 들어가는게 좋을까요?<br>
+          <ol>
+            <li>
+              6이나 9일 경우: 트리의 자식을 처리하기 위해 너무 많은 비용이 발생합니다. 
+            </li>
+            <li>
+              3일 경우: 왼쪽 값이 6이 되어버려, 트리의 규칙이 깨집니다.
+            </li>
+            <li>
+              4일 경우: 트리가 깨지지 않습니다.
+            </li>
+            <li>
+              7일 경우: 트리가 깨지지 않습니다.
+            </li>
+            <li>
+              18일 경우: 오른쪽 값보다 커져, 트리의 규칙이 깨집니다.
+            </li>
+          </ol>
+          이러한 이유로, 이러한 삭제 정렬에선, 왼쪽 서브트리에서 가장 큰 값, 오른쪽 서브트리에선 제일 작은 값을 넣는것이 좋습니다.
+        </p>
+      </div>
+      <h3 class="p_index_title_sub" id="main_second_third">
+        <a href="#top">2-3. 세번째 경우</a>
+      </h3>
+      <img src="third_case.jpg" style="width: 500px;">
+      <p>
+        여기서 36을 삭제한다고 가정해봅시다. 그럼 그 자리에는 누가 들어가는게 좋을까요?<br>
+        그냥 36을 지워버린 후, 19를 넣어두면 아무런 문제가 나지 않습니다.
+      </p>
+    </div>
+    <h3 id="main_third"><a href="#top">3. 느낀점</a></h3>
+        <p>
+        이번주 면접 보는데, 비오는 중에 런닝을 뛰어서 감기에 걸렸는지 일주일 내내 아파서, 힘든 주였지만 나름대로 열심히 해보려고 노력해봤습니다.
+        </p>
+      </div>
+    </main>
+    <script type="text/javascript" src="script2.js"></script>
+    <script src="https://kit.fontawesome.com/4a1f21abe5.js" crossorigin="anonymous"></script>
+  </body>
+</html>
